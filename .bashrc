@@ -87,6 +87,9 @@ case $OSTYPE in
     darwin*)    alias ls="ls -lhLHF" ;;
     *)          alias ls='ls' ;;
 esac
+alias bldapsearch="ldapsearch -h ldap.berkeley.edu -x -b dc=berkeley,dc=edu"
+alias serial="screen -R -- /dev/cu.KeySerial1"
+alias ocf-lp="ssh tsunami.ocf.berkeley.edu lp"
 
 ###############################################################################
 #
@@ -100,7 +103,4 @@ case `hostname` in
         alias vihours='nano ~/hours/`date +%Y-%m`'
     ;;
 esac
-
-
-
 
