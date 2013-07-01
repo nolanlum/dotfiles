@@ -14,5 +14,6 @@ ack*.berkeley.edu)
 *.ocf.berkeley.edu)
     PATH=$PATH:$HOME/local/bin
 ;;
+esac
 
 export PATH
