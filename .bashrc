@@ -104,3 +104,9 @@ case `hostname` in
     ;;
 esac
 
+# Disable terminal flow-control since that makes C-s do weird things.
+stty ixany
+stty ixoff -ixon
+stty stop undef
+stty start undef
+

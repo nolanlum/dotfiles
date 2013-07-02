@@ -30,8 +30,6 @@ set fileencodings=utf-8,ucs-bom,default,latin1
 " enable modeline parsing
 set modeline
 
-set visualbell
-
 " for terminals with dark backgrounds
 set background=dark
 
@@ -41,6 +39,9 @@ set number
 set numberwidth=4
 
 syntax enable
+
+" Enable mouse support for all modes.
+set mouse=a
 
 " Show trailing space characters
 set list listchars=trail:·
@@ -91,6 +92,13 @@ set showmatch
 " Toggle line numbers and fold column for easy copying:
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
+" Smart code un-folding with spacebar:
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+" C-s to save because It's Easier.
+map <C-s> :w<cr>
+imap <C-s> <ESC>:w<cr>a
+
 let mapleader = ","
 
 " -----------------------------------------------------------------------------
@@ -99,6 +107,10 @@ let mapleader = ","
 "
 " -----------------------------------------------------------------------------
 
+" open nerdtree on vim startup.
 let g:nerdtree_tabs_open_on_console_startup = 1
+
+" Disable pep8/mccabe checking
+let g:pymode_lint_checker = "pyflakes"
 
 " vim: set ft=vim
