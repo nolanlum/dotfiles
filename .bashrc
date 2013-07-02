@@ -53,7 +53,7 @@ fi
 ###############################################################################
 # Git niceness to put current git branch into PS1
 function parse_git_branch {
-    [[ -e `which git 2> /dev/null` && "/" != `git rev-parse --show-toplevel 2>/dev/null` ]] && git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+    [[ -e `which git 2> /dev/null` && ! "$HOME" -ef `git rev-parse --show-toplevel 2>/dev/null` ]] && git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
 
 export PS1='$(parse_git_branch)'"\[\e[35m\][\[\e[0;36m\]\u\[\e[31m\]@\[\e[32m\]\h\[\e[m\] \[\e[35m\]\W\[\e[35m\]]\[\e[m\]\$ "
