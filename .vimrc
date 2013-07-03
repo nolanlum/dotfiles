@@ -33,6 +33,9 @@ set modeline
 " for terminals with dark backgrounds
 set background=dark
 
+" guis are cool too
+set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+
 " show line numbers - make use of the extra screen real-estate with
 " textwidth set to 72.  Up to 4 digits are okay for line numbers
 set number
