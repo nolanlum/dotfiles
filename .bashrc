@@ -105,5 +105,5 @@ case `hostname` in
 esac
 
 # start tmux if requsted
-[ -f "~/.autotmux" ] && [ -z "$TMUX" ] && ltmux
+[ -f "$HOME/.autotmux" ] && [ -z "$TMUX" ] && ltmux
 
