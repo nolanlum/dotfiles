@@ -2,7 +2,7 @@
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+    . ~/.bashrc
 fi
 
 ###############################################################################
@@ -46,4 +46,9 @@ stty start undef
 [[ -e `which git 2> /dev/null` && -n "`git status -uno --porcelain`" ]] && \
     echo -e "\nThere are uncommitted dotfile changes:" &&
     git status -suno
+
+# Check to see if upstream master has changed.
+[ "`git ls-remote origin -h refs/heads/master | cut -f1`" \
+    != "`git rev-list --max-count=1 origin/master`" ] && \
+    git pull
 
