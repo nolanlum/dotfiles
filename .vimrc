@@ -49,6 +49,9 @@ set mouse=a
 " Show trailing space characters
 set list listchars=trail:·
 
+" Always show statusline.
+set laststatus=2
+
 " -----------------------------------------------------------------------------
 "
 " Formatting
