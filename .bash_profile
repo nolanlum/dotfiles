@@ -26,6 +26,8 @@ case $OSTYPE in
 darwin*)
     PATH=/opt/local/bin:/opt/local/sbin:$PATH
     PATH=/android-sdk/platform-tools:/android-sdk/tools:$PATH
+    EDITOR="mvim"
+    VISUAL="mvim"
 ;;
 esac
 
