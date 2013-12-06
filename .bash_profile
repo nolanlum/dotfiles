@@ -21,10 +21,9 @@ ack*.berkeley.edu)
 esac
 
 # OS X will change the system hostname to correspond to the DNS hostname,
-# so include MacPorts and android-sdk paths here.
+# so include android-sdk paths here.
 case $OSTYPE in
 darwin*)
-    PATH=/opt/local/bin:/opt/local/sbin:$PATH
     PATH=/android-sdk/platform-tools:/android-sdk/tools:$PATH
     EDITOR="mvim"
     VISUAL="mvim"
