@@ -47,7 +47,7 @@ syntax enable
 set mouse=a
 
 " Show trailing space characters
-set list listchars=trail:·
+set list listchars=tab:▸\ ,trail:·
 
 " Always show statusline.
 set laststatus=2
