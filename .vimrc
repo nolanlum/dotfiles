@@ -117,6 +117,6 @@ let mapleader = ","
 let g:nerdtree_tabs_open_on_console_startup = 1
 
 " Disable pep8/mccabe checking
-let g:pymode_lint_checker = "pyflakes"
+let g:pymode_lint_checkers = ["pyflakes"]
 
 " vim: set ft=vim
