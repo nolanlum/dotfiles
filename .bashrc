@@ -23,7 +23,10 @@ ocf.berkeley.edu)
 CS.Berkeley.EDU | EECS.Berkeley.EDU)
     [[ -z ${MASTER} ]] && export MASTER=${LOGNAME%-*}
     [[ -z ${MASTERDIR} ]] && export MASTERDIR=$(eval echo ~${MASTER})
-    [[ -e ${MASTERDIR}/adm/class.bash_profile ]] && . ${MASTERDIR}/adm/class.bash_profile
+    for file in ${MASTERDIR}/adm/bashrc.d/* ; do [[ -x ${file} ]] && . "${file}"; done
+
+    # this breaks cs164
+    # [[ -e ${MASTERDIR}/adm/class.bash_profile ]] && . ${MASTERDIR}/adm/class.bash_profile
     ;;
 esac
 
@@ -81,7 +84,7 @@ export TERM=xterm-256color
 ###############################################################################
 alias ltmux="(cd $HOME; if tmux has 2> /dev/null; then tmux -u attach; else tmux -u new; fi)"
 case $OSTYPE in
-    solaris*)   alias ls='ls -G' ;;
+    solaris*)   alias ls='ls -l' ;;
     freebsd*)   alias ls='ls -G' ;;
     linux-gnu)  alias ls='ls -lhLHF --color=auto --group-directories-first' ;;
     darwin*)    alias ls="ls -lhLHF" ;;
