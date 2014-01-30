@@ -27,6 +27,7 @@ CS.Berkeley.EDU | EECS.Berkeley.EDU)
 
     # this breaks cs164
     # [[ -e ${MASTERDIR}/adm/class.bash_profile ]] && . ${MASTERDIR}/adm/class.bash_profile
+    export LANG=en_US.UTF-8
     ;;
 esac
 
