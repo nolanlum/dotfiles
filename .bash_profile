@@ -18,6 +18,9 @@ ack*.berkeley.edu)
 *.ocf.berkeley.edu)
     PATH=$PATH:$HOME/local/bin
 ;;
+*.EECS.Berkeley.EDU|*.CS.Berkeley.EDU)
+    PATH=$HOME/bin:$PATH
+;;
 esac
 
 # OS X will change the system hostname to correspond to the DNS hostname,
