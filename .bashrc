@@ -76,7 +76,6 @@ export CLICOLOR=1
 [ "$TERM" != "screen-256color" ] && export TERM='xterm-256color'
 # Only export screen if we're in tmux.
 [ -n "$TMUX" ] && export TERM=screen-256color
-export TERM=xterm-256color
 
 ###############################################################################
 #
