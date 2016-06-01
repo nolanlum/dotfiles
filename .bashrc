@@ -33,6 +33,22 @@ esac
 
 ###############################################################################
 #
+# Source configs based on OS
+#
+###############################################################################
+case $OSTYPE in
+    darwin*)
+        if [ -r /usr/local/etc/bash_completion.d/brew ]; then
+            . /usr/local/etc/bash_completion.d/brew
+            for file in /usr/local/etc/bash_completion.d/*; do
+                . $file
+            done
+        fi
+        ;;
+esac
+
+###############################################################################
+#
 # Source global definitions
 #
 ###############################################################################
