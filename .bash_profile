@@ -28,8 +28,8 @@ esac
 case $OSTYPE in
 darwin*)
     PATH=/android-sdk/platform-tools:/android-sdk/tools:$PATH
-    EDITOR="mvim"
-    VISUAL="mvim"
+    EDITOR="mvim -f"
+    VISUAL="mvim -f"
 ;;
 esac
 
