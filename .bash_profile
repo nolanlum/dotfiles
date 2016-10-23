@@ -24,10 +24,12 @@ ack*.berkeley.edu)
 esac
 
 # OS X will change the system hostname to correspond to the DNS hostname,
-# so include android-sdk paths here.
+# so include Homebrew paths here.
 case $OSTYPE in
 darwin*)
-    PATH=/android-sdk/platform-tools:/android-sdk/tools:$PATH
+    PATH=/usr/local/sbin:$PATH
+    export GOPATH=$HOME/golang
+
     EDITOR="mvim -f"
     VISUAL="mvim -f"
 ;;
