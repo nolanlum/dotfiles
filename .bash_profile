@@ -30,6 +30,10 @@ darwin*)
     PATH=/usr/local/sbin:$PATH
     export GOPATH=$HOME/golang
 
+    if [ -f ~/.iterm2_shell_integration.bash ]; then
+        . ~/.iterm2_shell_integration.bash
+    fi
+
     EDITOR="mvim -f"
     VISUAL="mvim -f"
 ;;
