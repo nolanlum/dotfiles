@@ -1,5 +1,10 @@
 set nocompatible
 
+" execute a python3 command to swallow the imp deprecation warning
+if has('python3')
+  silent! python3 1
+endif
+
 " try to load pathogen, fail silently
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 silent! execute pathogen#infect()
