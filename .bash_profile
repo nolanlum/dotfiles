@@ -27,7 +27,7 @@ esac
 # so include Homebrew paths here.
 case $OSTYPE in
 darwin*)
-    PATH=/usr/local/sbin:$PATH
+    PATH=/usr/local/sbin:$HOME/bin:$PATH
     export GOPATH=$HOME/golang
 
     if [ -f ~/.iterm2_shell_integration.bash ]; then
