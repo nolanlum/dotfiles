@@ -124,4 +124,9 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 " Disable pep8/mccabe checking
 let g:pymode_lint_checkers = ["pyflakes"]
 
+" Disable rope because it is Very Slow
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope = 0
+
 " vim: set ft=vim
