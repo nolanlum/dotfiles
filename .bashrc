@@ -38,11 +38,15 @@ esac
 ###############################################################################
 case $OSTYPE in
     darwin*)
-        if [ -r /usr/local/etc/bash_completion.d/brew ]; then
-            . /usr/local/etc/bash_completion.d/brew
-            for file in /usr/local/etc/bash_completion.d/*; do
-                . $file
-            done
+        if type brew &>/dev/null; then
+            HOMEBREW_PREFIX="$(brew --prefix)"
+            if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+                source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+            else
+                for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+                    [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+                done
+            fi
         fi
         ;;
 esac

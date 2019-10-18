@@ -34,6 +34,11 @@ darwin*)
         . ~/.iterm2_shell_integration.bash
     fi
 
+    VSCODE_BINDIR="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+    if [ -d "$VSCODE_BINDIR" ]; then
+        PATH=$PATH:$VSCODE_BINDIR
+    fi
+
     EDITOR="mvim -f"
     VISUAL="mvim -f"
 ;;
