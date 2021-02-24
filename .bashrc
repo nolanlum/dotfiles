@@ -1,36 +1,5 @@
 # .bashrc
 
-case $OSTYPE in
-    solaris*)  DOMAINNAME=domainname ;;
-    linux-gnu)  DOMAINNAME=dnsdomainname ;;
-esac
-DOMAIN=$($DOMAINNAME)
-
-###############################################################################
-#
-# Source configs based on DNS domain
-#
-###############################################################################
-case $DOMAIN in
-ocf.berkeley.edu)
-    MAIL=/var/mail/${LOGNAME:?}
-    if [ `/usr/bin/whoami` != "root" ]; then
-        if [ -r /opt/ocf/share/environment/.bashrc ]; then
-            source /opt/ocf/share/environment/.bashrc
-        fi
-    fi
-    ;;
-CS.Berkeley.EDU | EECS.Berkeley.EDU)
-    [[ -z ${MASTER} ]] && export MASTER=${LOGNAME%-*}
-    [[ -z ${MASTERDIR} ]] && export MASTERDIR=$(eval echo ~${MASTER})
-    for file in ${MASTERDIR}/adm/bashrc.d/* ; do [[ -x ${file} ]] && . "${file}"; done
-
-    # this breaks cs164
-    # [[ -e ${MASTERDIR}/adm/class.bash_profile ]] && . ${MASTERDIR}/adm/class.bash_profile
-    export LANG=en_US.UTF-8
-    ;;
-esac
-
 ###############################################################################
 #
 # Source configs based on OS
@@ -87,8 +56,11 @@ export PS1='$(parse_git_branch)'"\[\e[35m\][\[\e[0;36m\]\u\[\e[31m\]@\[\e[32m\]\
 # Environment variable exports
 #
 ###############################################################################
-export EDITOR="vim"
-export VISUAL="vim"
+case $OSTYPE in
+    linux-gnu)  EDITOR="vim" ;;
+    darwin*)    EDITOR="mvim -f" ;;
+esac
+export VISUAL="$EDITOR"
 export PAGER="less"
 export CLICOLOR=1
 
@@ -102,29 +74,12 @@ export CLICOLOR=1
 # User specific aliases
 #
 ###############################################################################
-alias ltmux="(cd $HOME; if tmux has 2> /dev/null; then tmux -u attach; else tmux -u new; fi)"
+alias ltmux="(cd $HOME; if tmux has 2> /dev/null; then exec tmux -u attach; else exec tmux -u new; fi)"
+LS='ls -lhALHF --color=auto --group-directories-first'
 case $OSTYPE in
-    solaris*)   alias ls='ls -l' ;;
-    freebsd*)   alias ls='ls -G' ;;
-    linux-gnu)  alias ls='ls -lhLHF --color=auto --group-directories-first' ;;
-    darwin*)    alias ls="ls -lhLHF" ;;
+    linux-gnu)  alias ls='$LS' ;;
+    darwin*)    alias ls='g$LS' ;;
     *)          alias ls='ls' ;;
-esac
-alias bldapsearch="ldapsearch -h ldap.berkeley.edu -x -b dc=berkeley,dc=edu"
-alias serial="screen -R -- /dev/cu.KeySerial1"
-alias ocf-lp="ssh tsunami.ocf.berkeley.edu lp"
-
-###############################################################################
-#
-# Hostname-specific aliasing
-#
-###############################################################################
-case `hostname` in
-    ack2.berkeley.edu)
-        # old RHEL doesn't recognize --group-directories-first
-        alias ls='ls -lhLHF --color=auto'
-        alias vihours='nano ~/hours/`date +%Y-%m`'
-    ;;
 esac
 
 # start tmux if requsted

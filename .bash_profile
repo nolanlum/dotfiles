@@ -7,28 +7,13 @@ fi
 
 ###############################################################################
 #
-# Path extension
+# Path extension and integrations
 #
 ###############################################################################
-# Primarily set based on hostname.
-case $HOSTNAME in
-ack*.berkeley.edu)
-    PATH=$HOME/vim/bin:$HOME/python/bin:$PATH:$HOME/local/bin
-;;
-*.ocf.berkeley.edu)
-    PATH=$PATH:$HOME/local/bin
-;;
-*.EECS.Berkeley.EDU|*.CS.Berkeley.EDU)
-    PATH=$HOME/bin:$PATH
-;;
-esac
 
-# OS X will change the system hostname to correspond to the DNS hostname,
-# so include Homebrew paths here.
 case $OSTYPE in
 darwin*)
     PATH=/usr/local/sbin:$HOME/bin:$PATH
-    export GOPATH=$HOME/golang
 
     if [ -f ~/.iterm2_shell_integration.bash ]; then
         . ~/.iterm2_shell_integration.bash
@@ -39,8 +24,10 @@ darwin*)
         PATH=$PATH:$VSCODE_BINDIR
     fi
 
-    EDITOR="mvim -f"
-    VISUAL="mvim -f"
+    if [ -d /usr/local/opt/fzf/shell ]; then
+        . /usr/local/opt/fzf/shell/completion.bash
+        . /usr/local/opt/fzf/shell/key-bindings.bash
+    fi
 ;;
 esac
 
@@ -56,6 +43,15 @@ stty ixany
 stty ixoff -ixon
 stty stop undef
 stty start undef
+
+# Multi-terminal history
+shopt -s cmdhist
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTIGNORE='ls:bg:fg:history'
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Display uncommitted dotfile changes.
 [[ -e `which git 2> /dev/null` && -n "`git status -uno --porcelain`" ]] && \
