@@ -82,6 +82,8 @@ case $OSTYPE in
     *)          alias ls='ls' ;;
 esac
 
+alias gcb="git checkout \$(git branch --sort=-committerdate --format '%(align:50)%(refname:short) %(end)%(objectname:short) %(contents:subject)' | fzf --height 10 | sed -E 's/ .*$//')"
+
 # start tmux if requsted
 [ -f "$HOME/.autotmux" ] && [ -z "$TMUX" ] && ltmux
 
