@@ -28,6 +28,11 @@ darwin*)
         . /usr/local/opt/fzf/shell/completion.bash
         . /usr/local/opt/fzf/shell/key-bindings.bash
     fi
+
+    [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+
+    export N_PREFIX="$HOME/n"
+    [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 ;;
 esac
 
