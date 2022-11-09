@@ -17,6 +17,8 @@ case $OSTYPE in
                 done
             fi
         fi
+
+        [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
         ;;
 esac
 
