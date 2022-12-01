@@ -31,6 +31,7 @@ darwin*)
 
     [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
+    export M_PREFIX="$HOME"
     export N_PREFIX="$HOME/n"
     [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 ;;

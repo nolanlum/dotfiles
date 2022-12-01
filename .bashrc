@@ -2,6 +2,22 @@
 
 ###############################################################################
 #
+# Source configs based on arch
+#
+###############################################################################
+case $MACHTYPE in
+    arm64-apple*|aarch64-apple*)
+        # Set PATH, MANPATH, etc., for Homebrew.
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        ;;
+    x86_64-apple*)
+        # Set PATH, MANPATH, etc., for Homebrew.
+        eval "$(/usr/local/bin/brew shellenv)"
+        ;;
+esac
+
+###############################################################################
+#
 # Source configs based on OS
 #
 ###############################################################################
@@ -83,7 +99,6 @@ case $OSTYPE in
     darwin*)    alias ls='g$LS' ;;
     *)          alias ls='ls' ;;
 esac
-
 alias gcb="git checkout \$(git branch --sort=-committerdate --format '%(align:50)%(refname:short) %(end)%(objectname:short) %(contents:subject)' | fzf --height 10 | sed -E 's/ .*$//')"
 
 # start tmux if requsted
