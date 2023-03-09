@@ -32,6 +32,10 @@ case $OSTYPE in
                     [[ -r "$COMPLETION" ]] && source "$COMPLETION"
                 done
             fi
+
+            if brew ls --versions openssl &> /dev/null; then
+                export PATH="$(brew --prefix openssl)/bin:$PATH"
+            fi
         fi
 
         [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
