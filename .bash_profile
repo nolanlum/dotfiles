@@ -59,13 +59,14 @@ HISTFILESIZE=100000
 HISTIGNORE='ls:bg:fg:history'
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# Display uncommitted dotfile changes.
-[[ -e `which git 2> /dev/null` && -n "`git status -uno --porcelain`" ]] && \
-    echo -e "\nThere are uncommitted dotfile changes:" &&
-    git status -suno
+if [ "$PWD" == "$HOME" ]; then
+    # Display uncommitted dotfile changes.
+    [[ -e `which git 2> /dev/null` && -n "`git status -uno --porcelain`" ]] && \
+        echo -e "\nThere are uncommitted dotfile changes:" &&
+        git status -suno
 
-# Check to see if upstream master has changed.
-[ "`git ls-remote origin -h refs/heads/master | cut -f1`" \
-    != "`git rev-list --max-count=1 origin/master`" ] && \
-    git pull
-
+    # Check to see if upstream master has changed.
+    [ "`git ls-remote origin -h refs/heads/master | cut -f1`" \
+        != "`git rev-parse origin/master`" ] && \
+        git pull
+fi

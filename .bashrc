@@ -33,9 +33,8 @@ case $OSTYPE in
                 done
             fi
 
-            if brew ls --versions openssl &> /dev/null; then
-                export PATH="$(brew --prefix openssl)/bin:$PATH"
-            fi
+            OPENSSL_PREFIX="$(brew --prefix openssl 2>/dev/null)"
+            [ -z "$OPENSSL_PREFIX" ] && export PATH="$OPENSSL_PREFIX:$PATH"
         fi
 
         [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
