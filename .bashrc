@@ -24,7 +24,6 @@ esac
 case $OSTYPE in
     darwin*)
         if type brew &>/dev/null; then
-            HOMEBREW_PREFIX="$(brew --prefix)"
             if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
                 source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
             else
@@ -35,8 +34,11 @@ case $OSTYPE in
 
             OPENSSL_PREFIX="$(brew --prefix openssl 2>/dev/null)"
             [ -z "$OPENSSL_PREFIX" ] && export PATH="$OPENSSL_PREFIX:$PATH"
+
+            [ -s "${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh" ] && source "${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh"
         fi
 
+        export M_PREFIX="$HOME"
         [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
         ;;
 esac

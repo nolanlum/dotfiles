@@ -24,16 +24,10 @@ darwin*)
         PATH=$PATH:$VSCODE_BINDIR
     fi
 
-    if [ -d /usr/local/opt/fzf/shell ]; then
-        . /usr/local/opt/fzf/shell/completion.bash
-        . /usr/local/opt/fzf/shell/key-bindings.bash
+    if [ -d "${HOMEBREW_PREFIX}/opt/fzf/shell" ]; then
+        source "${HOMEBREW_PREFIX}/opt/fzf/shell/completion.bash"
+        source "${HOMEBREW_PREFIX}/opt/fzf/shell/key-bindings.bash"
     fi
-
-    [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
-
-    export M_PREFIX="$HOME"
-    export N_PREFIX="$HOME/n"
-    [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 ;;
 esac
 
