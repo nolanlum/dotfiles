@@ -13,7 +13,7 @@ fi
 
 case $OSTYPE in
 darwin*)
-    PATH=/usr/local/sbin:$HOME/bin:$PATH
+    PATH=/usr/local/sbin:$HOME/bin:$HOME/.local/bin:$PATH
 
     if [ -f ~/.iterm2_shell_integration.bash ]; then
         . ~/.iterm2_shell_integration.bash
