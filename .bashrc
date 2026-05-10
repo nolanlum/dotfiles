@@ -100,8 +100,8 @@ export CLICOLOR=1
 alias ltmux="(cd $HOME; if tmux has 2> /dev/null; then exec tmux -u attach; else exec tmux -u new; fi)"
 LS='ls -lhALHF --color=auto --group-directories-first'
 case $OSTYPE in
-    linux-gnu)  alias ls='$LS' ;;
-    darwin*)    alias ls='g$LS' ;;
+    linux-gnu)  alias ls="$LS" ;;
+    darwin*)    alias ls="g$LS" ;;
     *)          alias ls='ls' ;;
 esac
 alias gcb="git checkout \$(git branch --sort=-committerdate --format '%(align:50)%(refname:short) %(end)%(objectname:short) %(contents:subject)' | fzf --height 10 | sed -E 's/ .*$//')"
