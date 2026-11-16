@@ -1,0 +1,19 @@
+# Dotfiles repo lives in $HOME, so ignore everything by default and
+# manually allow individually tracked files. To track a new dotfile:
+#   1. add a `!/name` line here
+#   2. git add /name
+# (Directories need `!/name/`; a parent dir must be unignored before
+# anything inside it can be.)
+
+/*
+!/.gitignore
+!/.bash_profile
+!/.bashrc
+!/.tmux.conf
+!/.vimrc
+!/.gitmodules
+
+# vim bundles are submodules; unignore the dir chain, not contents
+!/.vim/
+!/.vim/bundle/
+!/.vim/bundle/*/
